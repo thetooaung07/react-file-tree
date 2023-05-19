@@ -1,6 +1,6 @@
+"use client";
 import { useState } from "react";
-import "../App.css";
-import { data as fileTree } from "../v2/data";
+import { data as fileTree } from "../v1/data";
 
 type TFileEntry = {
   name: string;
