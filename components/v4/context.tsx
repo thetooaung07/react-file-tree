@@ -39,11 +39,13 @@ export const treeViewReducer = (
       const newState = new Map(state);
       newState.delete(action.id);
       return newState;
-    // case TreeViewActionTypes.OPEN_ALL:
+    case TreeViewActionTypes.OPEN_ALL:
+      const openAll = new Map();
+      action.ids.map((id) => openAll.set(id, true));
+      return openAll;
     case TreeViewActionTypes.CLOSE_All:
       const newCloseAllState = new Map();
       return newCloseAllState;
-
     default:
       throw new Error("Tree Reducer received an unknown operation");
   }

@@ -20,51 +20,16 @@ export type TreeNodeType = {
 type RootProps = {
   children: ReactNode | ReactNode[];
   className?: string;
-  value: string | null;
-  onChange: (id: string) => void;
+  // value: string | null;
+  // onChange: (id: string) => void;
+  // expandableNodeIds: string[];
 };
 
-export const Root = ({ children, className, value, onChange }: RootProps) => {
-  const [open, dispatch] = useReducer(
-    treeViewReducer,
-    new Map<string, boolean>()
-  );
-
+export const Root = ({ children, className }: RootProps) => {
   return (
-    <TreeViewContext.Provider
-      value={{
-        open,
-        dispatch,
-        selectedId: value,
-        selectId: onChange,
-      }}
-    >
-      <ul className={clsx("flex flex-col overflow-auto relative", className)}>
-        <div className="absolute right-0 top-0 flex gap-2">
-          <button
-            className="border p-2 w-8 h-8 bg-white z-20 text-center flex items-center justify-center"
-            onClick={() => {
-              // dispatch({
-              //   type: TreeViewActionTypes.OPEN_ALL,
-              // });
-            }}
-          >
-            +
-          </button>
-          <button
-            className="border p-2 w-8 h-8 bg-white z-20 text-center flex items-center justify-center"
-            onClick={() => {
-              dispatch({
-                type: TreeViewActionTypes.CLOSE_All,
-              });
-            }}
-          >
-            x
-          </button>
-        </div>
-        {children}
-      </ul>
-    </TreeViewContext.Provider>
+    <ul className={clsx("flex flex-col overflow-auto", className)}>
+      {children}
+    </ul>
   );
 };
 
