@@ -85,9 +85,9 @@ export const AppV4 = () => {
           ></MyDropzone>
         )}
         {explorerData?.length > 0 && (
-          <div>
+          <div className="flex justify-between">
             <h1 className="font-bold">{explorerData[0].name} </h1>
-            <div className="absolute right-0 top-0 flex gap-2">
+            <div className="flex gap-2">
               <button
                 className="border p-2 w-8 h-8 bg-white z-20 text-center flex items-center justify-center"
                 onClick={() => {
@@ -114,20 +114,12 @@ export const AppV4 = () => {
         )}
 
         {explorerData?.length > 0 && explorerData[0].children !== undefined && (
-          <TreeView.Root className="w-[50vw] h-[40vh] border-[1.5px] border-slate-200 my-4">
+          <TreeView.Root className="w-[50vw] h-[40vh] border-[1.5px] border-slate-200 mb-4 mt-1">
             {explorerData[0].children?.map((node) => (
               <TreeView.Node node={node} key={node.id} />
             ))}
           </TreeView.Root>
         )}
-        {nodeWithChildren &&
-          nodeWithChildren.map((el) => {
-            return (
-              <div key={el}>
-                <h1>{el}</h1>
-              </div>
-            );
-          })}
       </div>
     </TreeViewContext.Provider>
   );
