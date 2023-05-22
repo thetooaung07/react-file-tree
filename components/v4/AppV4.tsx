@@ -1,11 +1,10 @@
 "use client";
 /// this is the explorer version of react-file-tree
 
-import fs from "fs";
+import Image from "next/image";
 import {
   ChangeEvent,
   Dispatch,
-  DragEvent,
   SetStateAction,
   useCallback,
   useContext,
@@ -13,11 +12,7 @@ import {
   useRef,
   useState,
 } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
-
-import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
-import { ServerComponent } from "./ServerComponent";
+import { useDropzone } from "react-dropzone";
 import { TreeNodeType, TreeView } from "./TreeView";
 import {
   TreeViewActionTypes,
@@ -37,8 +32,9 @@ declare module "react" {
 }
 
 export const AppV4 = () => {
-  const [selected, select] = useState<string | null>(null);
+  const [selected, select] = useState<string>("");
   const [explorerData, setExplorerData] = useState<TreeNodeType[]>([]);
+  const [rawFileList, setRawFileList] = useState<FileList | null>();
   const [open, dispatch] = useReducer(
     treeViewReducer,
     new Map<string, boolean>()
@@ -75,9 +71,11 @@ export const AppV4 = () => {
         <FileExplorer
           explorerData={explorerData}
           setExplorerData={setExplorerData}
+          setRawFileList={setRawFileList}
         ></FileExplorer>
 
         {/* <ServerComponent
+          rawFileList={rawFileList}
           selected={selected}
           explorerData={explorerData}
         ></ServerComponent> */}
@@ -99,16 +97,18 @@ export const AppV4 = () => {
 export const FileExplorer = ({
   explorerData,
   setExplorerData,
+  setRawFileList,
 }: {
   explorerData: TreeNodeType[];
   setExplorerData: Dispatch<SetStateAction<TreeNodeType[]>>;
+  setRawFileList: Dispatch<SetStateAction<FileList | null | undefined>>;
 }) => {
   const [nodeWithChildren, setNodeWithChildren] = useState<string[]>([]);
   const { dispatch } = useContext(TreeViewContext);
 
   const pickFolder = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-
+    setRawFileList(files);
     if (files) {
       const fileList = Array.from(files).map((file) => ({
         name: file.name,
@@ -123,7 +123,7 @@ export const FileExplorer = ({
 
   return (
     <div className="m-4">
-      <h2 className="text-center">V3</h2>
+      <h2 className="text-center">V4</h2>
       <h2 className="text-center mb-4">
         You can now imports folders from local and test dynamic data
       </h2>
