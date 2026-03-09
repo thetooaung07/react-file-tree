@@ -1,0 +1,20 @@
+# Source and demo app (not needed in published package)
+src/
+app/
+components/
+public/
+.next/
+
+# Config files
+tsconfig.json
+tsconfig.build.json
+tsup.config.ts
+tailwind.config.js
+postcss.config.js
+next.config.js
+.eslintrc.json
+.gitignore
+
+# Dev files
+node_modules/
+package-lock.json

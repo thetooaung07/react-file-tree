@@ -1,32 +1,68 @@
 {
-  "name": "react-file-tree-tmp",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@types/node": "20.2.1",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "clsx": "^1.2.1",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
-    "framer-motion": "^10.12.12",
-    "next": "13.4.2",
-    "postcss": "8.4.23",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-dropzone": "^14.2.3",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@types/uuid": "^9.0.1"
-  }
+	"name": "@thetooaung/react-file-tree",
+	"version": "0.1.0",
+	"description": "A reusable, animated React file tree component with drag-and-drop directory upload support.",
+	"keywords": [
+		"react",
+		"file-tree",
+		"tree-view",
+		"file-explorer",
+		"drag-and-drop",
+		"directory-upload",
+		"framer-motion"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thetooaung07/react-file-tree"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"dev": "next dev",
+		"build:lib": "tsup",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prepublishOnly": "npm run build:lib"
+	},
+	"peerDependencies": {
+		"framer-motion": ">=10",
+		"react": ">=18",
+		"react-dom": ">=18"
+	},
+	"dependencies": {
+		"clsx": "^1.2.1",
+		"react-dropzone": "^14.2.3",
+		"uuid": "^9.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "20.2.1",
+		"@types/react": "18.2.6",
+		"@types/react-dom": "18.2.4",
+		"@types/uuid": "^9.0.1",
+		"autoprefixer": "10.4.14",
+		"eslint": "8.40.0",
+		"eslint-config-next": "13.4.2",
+		"framer-motion": "^10.12.12",
+		"next": "13.4.2",
+		"postcss": "8.4.23",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"tailwindcss": "3.3.2",
+		"tsup": "^8.5.1",
+		"typescript": "5.0.4"
+	}
 }
